@@ -5,6 +5,10 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     @songs = Song.all
+
+    if params[:q].present?
+      @songs = Song.joins(:genre).where("genres.name = ?", params[:q])
+    end
   end
 
   # GET /songs/1
