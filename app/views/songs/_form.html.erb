@@ -1,3 +1,4 @@
+<div class="well">
 <%= form_for(@song) do |f| %>
   <% if @song.errors.any? %>
     <div id="error_explanation">
@@ -13,17 +14,24 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"form-control"  %>
   </div>
   <div class="field">
     <%= f.label :duration %><br>
-    <%= f.text_field :duration %>
+    <%= f.text_field :duration, class:"form-control" %>
   </div>
   <div class="field">
-    <%= f.label :genres_id %><br>
-    <%= f.text_field :genres_id %>
+    <div class="row">
+    <% Genre.all.each do |genre| %>
+      <div class="col-md-2">
+        <%= f.label :genre_id, genre.name %>
+        <%= f.radio_button :genre_id, genre.id, class:"form-control" %>
+      </div>
+    <% end %>
+  </div>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>
