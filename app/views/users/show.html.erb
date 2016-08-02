@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Songs <%= link_to "Ordenar", songs_path(sort: "name", q: params[:q]) %> </h1>
-
 <table class="table">
   <thead>
     <tr>
@@ -13,17 +9,13 @@
   </thead>
 
   <tbody>
-    <% @songs.each do |song| %>
+    <% @user_songs.each do |user_song| %>
       <tr>
-        <td><%= song.name %></td>
-        <td><%= song.duration %></td>
-        <td><%= link_to song.genre.try(:name), songs_path(q: song.genre.try(:name)) %></td>
-        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user_song.song.name %></td>
+        <td><%= user_song.position %> </td>
+        <td><%= user_song.song.duration %></td>
+        <td><%= link_to 'Destroy', [@user, user_song], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Song', new_song_path %>

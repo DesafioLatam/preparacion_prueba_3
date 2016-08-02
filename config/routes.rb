@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
 
-  resources :songs
-  resources :genres
-  resources :users
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
 
+  resources :songs
+  # resources :genres
+  resources :users, only: [:index, :show] do
+    resources :user_songs, only: :destroy
+  end
+
   resources :songs do
-    resources :user_songs
+    resources :user_songs, only: :create
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
