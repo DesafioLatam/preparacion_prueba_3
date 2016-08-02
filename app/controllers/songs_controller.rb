@@ -9,6 +9,11 @@ class SongsController < ApplicationController
     if params[:q].present?
       @songs = Song.joins(:genre).where("genres.name = ?", params[:q])
     end
+
+    if params[:sort].present?
+      @songs = @songs.order("songs.name desc")
+    end
+
   end
 
   # GET /songs/1

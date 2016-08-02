@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Songs</h1>
+<h1>Listing Songs <%= link_to "Ordenar", songs_path(sort: "name", q: params[:q]) %> </h1>
 
 <table class="table">
   <thead>
