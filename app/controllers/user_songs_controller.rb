@@ -1,4 +1,6 @@
 class UserSongsController < ApplicationController
+  load_and_authorize_resource
+
   def create
     @song = Song.find(params[:song_id])
     @user_song = @song.user_songs.build(user: current_user)
