@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pages/noaccess'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
